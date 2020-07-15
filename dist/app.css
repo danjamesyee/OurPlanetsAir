@@ -6,7 +6,7 @@ svg {
 }
 
 .sphere {
-  fill: rgb(226, 238, 255);
+  fill: cornflowerblue;
 }
 
 .country {
@@ -50,17 +50,76 @@ svg {
   pointer-events: all;
 }
 .aqi-circle {
-  fill: red;
+  /* fill: red; */
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
+  animation: fadeIn 6s;
+  animation-name: color;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes color {
+  0% {
+    fill: #b80c09;
+  }
+  25% {
+    fill: #cc5803;
+  }
+  50% {
+    fill: #CA3C25;
+  }
+  75% {
+    fill: #702632;
+  }
+  100% {
+    fill: #ff5400;
+  }
+}
+
+@keyframes breathe {
+  0% {
+    width: 10%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .co-circle {
   fill: #33658a;
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
-  display: none;
+  animation: fadeIn 6s;
+  animation-name: color;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  /* display: none; */
+}
+
+@keyframes colorco {
+  0% {
+    fill: #235789 ;
+  }
+  50% {
+    fill: #007CBE;
+  }
+  
+  100% {
+    fill: #7161EF;
+  }
 }
 
 .pm25-circle {
@@ -68,7 +127,8 @@ svg {
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
-  display: none;
+  animation: fadeIn 6s;
+  /* display: none; */
 }
 
 .pm10-circle {
@@ -76,14 +136,16 @@ svg {
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
-  display: none;
+  animation: fadeIn 6s;
+  /* display: none; */
 }
 .o3-circle {
   fill: rgb(152, 226, 152);
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
-  display: none;
+  animation: fadeIn 6s;
+  /* display: none; */
 }
 
 #tooltip {

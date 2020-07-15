@@ -13,17 +13,20 @@ import {
   scaleOrdinal,
   schemeCategory10,
   schemeSpectral,
+  forceSimulation,
   scaleSqrt,
   max,
   tip,
   mouse,
+  forceX
 } from "d3";
 import { sizeLegend } from "./sizeLegend";
 import { feature } from "topojson";
 // console.log("Hello");
 const aqikey = "97fe6ae1fe494e3775484aaf4968b874996c5e37";
 const svg = select("svg");
-
+const simulation = forceSimulation()
+  .force("x", forceX(960/2).strength(0.005));
 // const width = +svg.attr("width");
 // const height = +svg.attr("height");
 const g = svg.append("g");
@@ -183,58 +186,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         .attr("style", "position: absolute; opacity: 0;");
       // .text((d) => d.city + " aqi: " + d.aqi.data.aqi);
 
-      g.selectAll(".city-circle")
-        .data(capitals)
-        .enter()
-        .append("circle")
-        .attr("class", "city-circle")
-        .attr("class", "aqi-circle")
-        .attr("id", "main-circle")
-        .attr("r", (d) => sizeScale(radiusValue(d)))
-        .attr("cx", function (d) {
-          const coords = projection([d.lng, d.lat]);
-          return coords[0];
-        })
-        .attr("cy", function (d) {
-          const coords = projection([d.lng, d.lat]);
-          // console.log(d);
-          return coords[1];
-        })
-        .on("mouseover", function (d) {
-          select("#tooltip")
-            .transition()
-            .duration(200)
-            .style("opacity", 1)
-            .text(
-              d.city +
-                "\n AQI: " +
-                d.aqi.data.aqi +
-                +"   " +
-                "\n CO: " +
-                (d.aqi.data.iaqi.co ? d.aqi.data.iaqi.co.v : "no data") +
-                "\n O3: " +
-                (d.aqi.data.iaqi.o3 ? d.aqi.data.iaqi.o3.v : "no data") +
-                "\n PM 2.5: " +
-                (d.aqi.data.iaqi.pm25 ? d.aqi.data.iaqi.pm25.v : "no data") +
-                "\n PM 10: " +
-                (d.aqi.data.iaqi.pm10 ? d.aqi.data.iaqi.pm10.v : "no data") +
-                "\n SO2: " +
-                (d.aqi.data.iaqi.so2 ? d.aqi.data.iaqi.so2.v : "no data") +
-                "\n NO2: " +
-                (d.aqi.data.iaqi.no2 ? d.aqi.data.iaqi.no2.v : "no data")
-            );
-
-          console.log(d);
-        })
-        .on("mouseout", function (d) {
-          select("#tooltip").style("opacity", 0);
-        })
-        .on("mousemove", function (d) {
-          select("#tooltip")
-            .style("left", event.pageX + 10 + "px")
-            .style("top", event.pageY + 10 + "px");
-        });
-
       g.selectAll(".city-label")
         .data(capitals)
         .enter()
@@ -278,6 +229,71 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         .text(
           (d) => d.city + " CO: " + (radiusValueCO(d) ? radiusValueCO(d).v : 0)
         );
+
+      const circles = g.selectAll(".city-circle")
+        .data(capitals)
+        .enter()
+        .append("circle")
+        .attr("class", "city-circle")
+        .attr("class", "aqi-circle")
+        .attr("id", "main-circle")
+        .attr("r", (d) => sizeScale(radiusValue(d)))
+        .attr("cx", function (d) {
+          const coords = projection([d.lng, d.lat]);
+          return coords[0];
+        })
+        .attr("cy", function (d) {
+          const coords = projection([d.lng, d.lat]);
+          // console.log(d);
+          return coords[1];
+        })
+        .on("mouseover", function (d) {
+          select("#tooltip")
+            .transition()
+            .duration(200)
+            .style("opacity", 1)
+            .text(
+              d.city +
+                "\n Pop: " +
+                +d.population +
+                "\n AQI: " +
+                +d.aqi.data.aqi +
+                "\n CO: " +
+                +(d.aqi.data.iaqi.co ? d.aqi.data.iaqi.co.v : "no data") +
+                "\n O3: " +
+                +(d.aqi.data.iaqi.o3 ? d.aqi.data.iaqi.o3.v : "no data") +
+                "\n PM2.5: " +
+                +(d.aqi.data.iaqi.pm25 ? d.aqi.data.iaqi.pm25.v : "no data") +
+                "\n PM10: " +
+                +(d.aqi.data.iaqi.pm10 ? d.aqi.data.iaqi.pm10.v : "no data") +
+                "\n SO2: " +
+                +(d.aqi.data.iaqi.so2 ? d.aqi.data.iaqi.so2.v : "no data") +
+                "\n NO2: " +
+                +(d.aqi.data.iaqi.no2 ? d.aqi.data.iaqi.no2.v : "no data")
+            );
+
+          console.log(d);
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip").style("opacity", 0);
+        })
+        .on("mousemove", function (d) {
+          select("#tooltip")
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY + 10 + "px");
+        });
+
+      simulation.nodes(capitals).on("tick", ticked);
+
+      function ticked() {
+        circles
+          .attr("cx", function (d) {
+            return d.x;
+          })
+          .attr("cy", function (d) {
+            return d.y;
+          });
+      }
     });
   }
 );
