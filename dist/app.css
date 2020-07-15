@@ -1,3 +1,82 @@
 svg {
   /* background-color: white; */
+  background: white;
+  stroke: #333333;
+  stroke-width: 0.05;
+}
+
+.sphere {
+  fill: rgb(226, 238, 255);
+}
+
+.country {
+  fill: #eeeeee;
+}
+
+.country:hover {
+  fill: cornflowerblue;
+}
+.selected {
+  fill: yellow;
+}
+
+.pm25-circle:hover {
+  fill: blue;
+}
+.pm10-circle:hover {
+  fill: blue;
+}
+.aqi-circle:hover {
+  fill: blue;
+}
+.o3-circle:hover {
+  fill: blue;
+}
+
+.city-label {
+  /* font-size: 1px; */
+}
+
+.tick circle,
+.city-circle {
+  fill: red;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.3;
+}
+
+#main-circle {
+  z-index: 9999;
+}
+.aqi-circle {
+  fill: red;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.3;
+}
+.co-circle {
+  fill: #33658a;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.3;
+}
+
+.pm25-circle {
+  fill: grey;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.3;
+}
+
+.pm10-circle {
+  fill: yellow;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.3;
+}
+.o3-circle {
+  fill: rgb(152, 226, 152);
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.3;
 }

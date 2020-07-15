@@ -20,6 +20,9 @@
   "homepage": "https://github.com/danjamesyee/Air#readme",
   "dependencies": {
     "d3": "^5.16.0",
+    "d3-queue": "^3.0.7",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
     "topojson": "^3.0.2"
   }
 }
