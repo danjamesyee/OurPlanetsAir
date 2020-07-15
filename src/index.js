@@ -15,6 +15,8 @@ import {
   schemeSpectral,
   scaleSqrt,
   max,
+  tip,
+  mouse,
 } from "d3";
 import { sizeLegend } from "./sizeLegend";
 import { feature } from "topojson";
@@ -49,7 +51,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
     const radiusValue = (d) => d.aqi.data.aqi;
 
     const countries = feature(topoJSONData, topoJSONData.objects.countries);
-    console.log(aqidata);
+    // console.log(aqidata);
     const paths = g.selectAll("path").data(countries.features);
     const colorScale = scaleOrdinal(schemeCategory10);
     paths
@@ -83,7 +85,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       for (let j = 0; j < capitals.length; j++) {
         capitals[j]["aqi"] = array[j];
       }
-      console.log(capitals);
+      // console.log(capitals);
       sizeScale.domain([0, max(capitals, radiusValue)]).range([0, 10]);
 
       const radiusValueO3 = (d) => d.aqi.data.iaqi.o3;
@@ -100,7 +102,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         })
         .attr("cy", function (d) {
           const coords = projection([d.lng, d.lat]);
-          console.log(radiusValueO3(d));
+          // console.log(radiusValueO3(d));
           return coords[1];
         })
         .attr("dx", 1)
@@ -165,6 +167,21 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
             "pm 2.5: " +
             (radiusValuePM25(d) ? radiusValuePM25(d).v / 2 : 0)
         );
+      // debugger;
+
+      g.append("g").attr("transform", `translate(90,120)`).call(sizeLegend, {
+        sizeScale,
+        spacing: 40,
+        textOffset: 10,
+        numTicks: 5,
+        circleFill: "rgba(0, 0, 0, 0.5)",
+      });
+
+      select("body")
+        .append("pre")
+        .attr("id", "tooltip")
+        .attr("style", "position: absolute; opacity: 0;");
+      // .text((d) => d.city + " aqi: " + d.aqi.data.aqi);
 
       g.selectAll(".city-circle")
         .data(capitals)
@@ -183,16 +200,40 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           // console.log(d);
           return coords[1];
         })
-        .append("title")
-        .text((d) => d.city + " aqi: " + d.aqi.data.aqi);
+        .on("mouseover", function (d) {
+          select("#tooltip")
+            .transition()
+            .duration(200)
+            .style("opacity", 1)
+            .text(
+              d.city +
+                "\n AQI: " +
+                d.aqi.data.aqi +
+                +"   " +
+                "\n CO: " +
+                (d.aqi.data.iaqi.co ? d.aqi.data.iaqi.co.v : "no data") +
+                "\n O3: " +
+                (d.aqi.data.iaqi.o3 ? d.aqi.data.iaqi.o3.v : "no data") +
+                "\n PM 2.5: " +
+                (d.aqi.data.iaqi.pm25 ? d.aqi.data.iaqi.pm25.v : "no data") +
+                "\n PM 10: " +
+                (d.aqi.data.iaqi.pm10 ? d.aqi.data.iaqi.pm10.v : "no data") +
+                "\n SO2: " +
+                (d.aqi.data.iaqi.so2 ? d.aqi.data.iaqi.so2.v : "no data") +
+                "\n NO2: " +
+                (d.aqi.data.iaqi.no2 ? d.aqi.data.iaqi.no2.v : "no data")
+            );
 
-      g.append("g").attr("transform", `translate(90,120)`).call(sizeLegend, {
-        sizeScale,
-        spacing: 40,
-        textOffset: 10,
-        numTicks: 5,
-        circleFill: "rgba(0, 0, 0, 0.5)",
-      });
+          console.log(d);
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip").style("opacity", 0);
+        })
+        .on("mousemove", function (d) {
+          select("#tooltip")
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY + 10 + "px");
+        });
 
       g.selectAll(".city-label")
         .data(capitals)
