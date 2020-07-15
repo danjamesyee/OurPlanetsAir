@@ -73,6 +73,7 @@ svg {
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
+  /* display: none; */
 }
 .o3-circle {
   fill: rgb(152, 226, 152);
