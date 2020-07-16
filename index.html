@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Air</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <h3 id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h1>Our Planet's Air</h1>
+          <h5>
+            Our Planet's Air is an interactive map visualising the different air
+            pollutants in major cities using data from the
+            <a href="https://aqicn.org/here/">World Air Quality Index</a>.
+          </h5>
+          <h5>
+            The AQI rating of each city is represented by a red circle varying
+            in size based on the rating.
+          </h5>
+          <h5>
+            Please be patient as the data can take up to a few minutes to load.
+            This message will close when the data is loaded.
+          </h5>
+
+          <h6>Instructions:</h6>
+          <ul>
+            <li>Click each button to reveal each pollutant</li>
+            <li>Drag to pan and scroll to zoom on the map</li>
+            <li>
+              Hover over each city to see the population and pollution numbers
+              for each city
+            </li>
+          </ul>
+          <br />
+          <a href="https://github.com/danjamesyee/Air" id="github"
+            >Github Repo</a
+          >
+        </div>
+      </h3>
+      <h3 id="myModal2" class="modal2">
+        <div class="modal-content2" id="mc2">
+          <span class="close2">&times;</span>
+          <h2>The pollutants in our air</h2>
+          <h5>
+            <div class="ptitle" id="po3">O3(Ozone)</div>
+            - Ground-level ozone, is “bad” because it can trigger a variety of
+            health problems, particularly for children, the elderly, and people
+            of all ages who have lung diseases such as asthma.
+          </h5>
+          <h5>
+            <div class="ptitle" id="pco">CO(Carbon Monoxide)</div>
+            - Breathing air with a high concentration of CO reduces the amount
+            of oxygen that can be transported in the blood stream to critical
+            organs like the heart and brain. At very high levels, which are
+            possible indoors or in other enclosed environments, CO can cause
+            dizziness, confusion, unconsciousness and death. Very high levels of
+            CO are not likely to occur outdoors. However, when CO levels are
+            elevated outdoors, they can be of particular concern for people with
+            some types of heart disease.
+          </h5>
+          <h5>
+            <div class="ptitle" id="pso2">SO2(Sulfur Dioxide)</div>
+            - Short-term exposures to SO2 can harm the human respiratory system
+            and make breathing difficult. People with asthma, particularly
+            children, are sensitive to these effects of SO2. SO2 emissions that
+            lead to high concentrations of SO2 in the air generally also lead to
+            the formation of other sulfur oxides (SOx). SOx can react with other
+            compounds in the atmosphere to form small particles. These particles
+            contribute to particulate matter (PM) pollution.
+          </h5>
+          <h5>
+            <div class="ptitle" id="pno2">NO2(Nitrogen Dioxide)</div>
+            - Breathing air with a high concentration of NO2 can irritate
+            airways in the human respiratory system. Such exposures over short
+            periods can aggravate respiratory diseases, particularly asthma,
+            leading to respiratory symptoms (such as coughing, wheezing or
+            difficulty breathing), hospital admissions and visits to emergency
+            rooms.
+          </h5>
+          <h5>
+            <div class="ptitle" id="ppm">
+              PM10/PM2.5(Particulate Matter)
+            </div>
+            - Particulate matter contains microscopic solids or liquid droplets
+            that are so small that they can be inhaled and cause serious health
+            problems. Some particles less than 10 micrometers in diameter can
+            get deep into your lungs and some may even get into your
+            bloodstream. Of these, particles less than 2.5 micrometers in
+            diameter, also known as fine particles or PM2.5, pose the greatest
+            risk to health.
+          </h5>
+
+          <br />
+          <a href="https://www.epa.gov/criteria-air-pollutants" id="epa"
+            >Information found on the EPA website</a
+          >
+        </div>
+      </h3>
+      <div class="buttons">
+        <button id="pm10-btn">PM10</button>
+        <button id="pm25-btn">PM2.5</button>
+        <button id="co-btn">CO</button>
+        <button id="o3-btn">O3</button>
+        <button id="so2-btn">SO2</button>
+        <button id="no2-btn">NO2</button>
+      </div>
+      <svg width="960" height="500"></svg>
+
+      <br />
+      <div class="flexer">
+        <button id="instructions">Information</button>
+        <button id="about">More about the pollutants</button>
+      </div>
+      <!-- <div id="map"></div> -->
+      <script src="main.js"></script>
+    </div>
+  </body>
+</html>
