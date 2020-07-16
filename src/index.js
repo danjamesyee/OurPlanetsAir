@@ -131,7 +131,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
     const promises = [];
     for (let j = 0; j < capitals.length; j++) {
       const promise = json(
-        `http://api.waqi.info/feed/geo:${capitals[j].lat};${capitals[j].lng}/?token=${aqikey}`
+        `https://api.waqi.info/feed/geo:${capitals[j].lat};${capitals[j].lng}/?token=${aqikey}`
       );
       promises.push(promise);
     }
