@@ -29,7 +29,7 @@ Users can hover over each city to display a tooltip giving the name, population,
 
 ### Data Sources
 
-##### Thanks to these places for the data:
+##### Thanks to these places for their free data:
   
   * [World Air Quality Index Project](https://waqi.info/)
   * [Simple Maps World Cities Database](https://simplemaps.com/data/world-cities)
