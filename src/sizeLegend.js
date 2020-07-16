@@ -1,6 +1,6 @@
 export const sizeLegend = (selection, props) => {
   const { sizeScale, spacing, textOffset, numTicks, circleFill } = props;
-//   debugger;
+  //   debugger;
   const ticks = sizeScale
     .ticks(numTicks)
     .filter((d) => d !== 0)
@@ -24,5 +24,6 @@ export const sizeLegend = (selection, props) => {
     .merge(groups.select("text"))
     .text((d) => d)
     .attr("dy", "0.32em")
-    .attr("x", (d) => sizeScale(d) + textOffset);
+    .attr("x", (d) => sizeScale(d) + textOffset)
+    .attr("class", "legend");
 };

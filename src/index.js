@@ -20,6 +20,11 @@ import {
   mouse,
   forceX,
   selectAll,
+  geoTransverseMercator,
+  geoConicConformal,
+  geoEqualEarth,
+  geoEquirectangular,
+  geoNaturalEarth1Raw,
 } from "d3";
 import { sizeLegend } from "./sizeLegend";
 import { feature } from "topojson";
@@ -27,12 +32,10 @@ import { feature } from "topojson";
 const aqikey = "97fe6ae1fe494e3775484aaf4968b874996c5e37";
 const svg = select("svg");
 
-// const width = +svg.attr("width");
-// const height = +svg.attr("height");
-
 const instBtn = document.getElementById("instructions");
 const modal = document.getElementById("myModal");
 const span = document.getElementsByClassName("close")[0];
+const cont = document.getElementsByClassName;
 
 instBtn.onclick = function () {
   modal.style.display = "block";
@@ -42,12 +45,17 @@ span.onclick = function () {
   modal.style.display = "none";
 };
 
-window.onclick = function (event) {
+modal.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 };
+let width = svg.style("width");
+width = +width.slice(0, width.length - 2) / 2;
 const g = svg.append("g");
+// console.log(width);
+let height = svg.style("height");
+height = +(height.slice(0, height.length - 2) / 2);
 
 const projection = geoNaturalEarth1();
 const pathGenerator = geoPath().projection(projection);
@@ -55,11 +63,18 @@ g.append("path")
   .attr("class", "sphere")
   .attr("d", pathGenerator({ type: "Sphere" }));
 
+console.log(select("path"));
+selectAll("g").attr("transform", "scale(1.5)");
+// select("g").attr("transform", `translate(1, 100)`);
+
 svg.call(
   zoom().on("zoom", () => {
     g.attr("transform", event.transform);
   })
 );
+// g.attr("width", 100);
+// console.log(g.attr("width"));
+
 Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
   ([csvData, topoJSONData, aqidata]) => {
     // console.log(csvData);
@@ -84,6 +99,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       .append("title")
       .text((d) => d.properties.name);
     // debugger;
+
     const cities = Object.values(rowById);
     const capitals = [];
     for (let i = 0; i < cities.length; i++) {
@@ -139,9 +155,13 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       select("#o3-btn").on("click", function () {
         if (select(".o3-circle").classed("selected")) {
           o3circles.style("display", "none");
+          select(this).style("opacity", 0.5);
+
           select(".o3-circle").classed("selected", false);
         } else {
           o3circles.style("display", "block");
+          select(this).style("opacity", 1);
+
           select(".o3-circle").classed("selected", true);
         }
       });
@@ -176,9 +196,13 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       select("#so2-btn").on("click", function () {
         if (select(".so2-circle").classed("selected")) {
           so2circles.style("display", "none");
+          select(this).style("opacity", 0.5);
+
           select(".so2-circle").classed("selected", false);
         } else {
           so2circles.style("display", "block");
+          select(this).style("opacity", 1);
+
           select(".so2-circle").classed("selected", true);
         }
       });
@@ -213,9 +237,13 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       select("#no2-btn").on("click", function () {
         if (select(".no2-circle").classed("selected")) {
           no2circles.style("display", "none");
+          select(this).style("opacity", 0.5);
+
           select(".no2-circle").classed("selected", false);
         } else {
           no2circles.style("display", "block");
+          select(this).style("opacity", 1);
+
           select(".no2-circle").classed("selected", true);
         }
       });
@@ -252,9 +280,12 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       select("#pm10-btn").on("click", function () {
         if (select(".pm10-circle").classed("selected")) {
           pm10circles.style("display", "none");
+          select(this).style("opacity", 0.5);
           select(".pm10-circle").classed("selected", false);
         } else {
           pm10circles.style("display", "block");
+          select(this).style("opacity", 1);
+
           select(".pm10-circle").classed("selected", true);
         }
       });
@@ -291,20 +322,26 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       select("#pm25-btn").on("click", function () {
         if (select(".pm25-circle").classed("selected")) {
           pm25circles.style("display", "none");
+          select(this).style("opacity", 0.5);
+
           select(".pm25-circle").classed("selected", false);
         } else {
           pm25circles.style("display", "block");
+          select(this).style("opacity", 1);
+
           select(".pm25-circle").classed("selected", true);
         }
       });
 
-      g.append("g").attr("transform", `translate(90,120)`).call(sizeLegend, {
-        sizeScale,
-        spacing: 40,
-        textOffset: 10,
-        numTicks: 5,
-        circleFill: "rgba(0, 0, 0, 0.5)",
-      });
+      // g.append("g").attr("transform", `translate(90,200)`).call(sizeLegend, {
+      //   sizeScale,
+      //   spacing: 40,
+      //   textOffset: 10,
+      //   numTicks: 5,
+      //   circleFill: "rgba(0, 0, 0, 0.5)",
+      // });
+
+      // (select(".tick"));
 
       select("body")
         .append("pre")
@@ -360,9 +397,13 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       select("#co-btn").on("click", function () {
         if (select(".co-circle").classed("selected")) {
           coCircles.style("display", "none");
+          select(this).style("opacity", 0.5);
+
           select(".co-circle").classed("selected", false);
         } else {
           coCircles.style("display", "block");
+          select(this).style("opacity", 1);
+
           select(".co-circle").classed("selected", true);
         }
       });
@@ -396,25 +437,24 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
             .style("opacity", 1)
             .text(
               d.city +
-                `\n Pop: ${numberWithCommas(d.population)}` +
-                "\n AQI: " +
-                +d.aqi.data.aqi +
-                `\n CO: ${
+                `\n Pop:     ${numberWithCommas(d.population)}` +
+                `\n AQI:     ${d.aqi.data.aqi}` +
+                `\n CO:       ${
                   d.aqi.data.iaqi.co ? d.aqi.data.iaqi.co.v : "no data"
                 }` +
-                `\n O3: ${
+                `\n O3:       ${
                   d.aqi.data.iaqi.o3 ? d.aqi.data.iaqi.o3.v : "no data"
                 }` +
                 `\n PM2.5: ${
                   d.aqi.data.iaqi.pm25 ? d.aqi.data.iaqi.pm25.v : "no data"
                 }` +
-                `\n PM10: ${
+                `\n PM10:  ${
                   d.aqi.data.iaqi.pm10 ? d.aqi.data.iaqi.pm10.v : "no data"
                 }` +
-                `\n SO2: ${
+                `\n SO2:     ${
                   d.aqi.data.iaqi.so2 ? d.aqi.data.iaqi.so2.v : "no data"
                 }` +
-                `\n NO2: ${
+                `\n NO2:    ${
                   d.aqi.data.iaqi.no2 ? d.aqi.data.iaqi.no2.v : "no data"
                 }`
             );

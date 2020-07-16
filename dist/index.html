@@ -12,16 +12,35 @@
     <link rel="stylesheet" href="app.css" type="text/css" />
   </head>
   <body class="container">
-    <h1>Our Planet's Air</h1>
     <h3 id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Our Planet's Air is a project visualising the different air pollutants in major cities</p>
+        <h1>Our Planet's Air</h1>
+        <h5>
+          Our Planet's Air is an interactive map visualising the different air
+          pollutants in major cities using data from the
+          <a href="https://aqicn.org/here/">World Air Quality Index</a>.
+        </h5>
+        <h5>
+          The AQI rating of each city is represented by a red circle varying in
+          size based on the rating.
+        </h5>
+        <h5>
+          Please be patient as the data can take up to a few minutes to load.
+          This message will close when the data is loaded.
+        </h5>
+
+        <h6>Instructions:</h6>
         <ul>
-          <div>Click each button to reveal each pollutant</div>
-          <div>Drag to pan and scroll to zoom on the map</div>
-          <div>Hover over each city to see the data</div>
+          <li>Click each button to reveal each pollutant</li>
+          <li>Drag to pan and scroll to zoom on the map</li>
+          <li>
+            Hover over each city to see the population and pollution numbers for
+            each city
+          </li>
         </ul>
+        <br />
+        <a href="https://github.com/danjamesyee/Air" id="github">Github Repo</a>
       </div>
     </h3>
     <div class="buttons">
@@ -32,7 +51,9 @@
       <button id="so2-btn">SO2</button>
       <button id="no2-btn">NO2</button>
     </div>
-    <svg width="97vw" height="75vh"></svg>
+    <svg width="97vw" height="78vh"></svg>
+
+    <br />
     <button id="instructions">Instructions</button>
     <!-- <div id="map"></div> -->
     <script src="main.js"></script>
