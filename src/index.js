@@ -26,12 +26,27 @@ import { feature } from "topojson";
 // console.log("Hello");
 const aqikey = "97fe6ae1fe494e3775484aaf4968b874996c5e37";
 const svg = select("svg");
-const simulation = forceSimulation().force(
-  "x",
-  forceX(960 / 2).strength(0.005)
-);
+
 // const width = +svg.attr("width");
 // const height = +svg.attr("height");
+
+const instBtn = document.getElementById("instructions");
+const modal = document.getElementById("myModal");
+const span = document.getElementsByClassName("close")[0];
+
+instBtn.onclick = function () {
+  modal.style.display = "block";
+};
+
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 const g = svg.append("g");
 
 const projection = geoNaturalEarth1();
@@ -93,6 +108,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       }
       // console.log(capitals);
       sizeScale.domain([0, max(capitals, radiusValue)]).range([0, 10]);
+      modal.style.display = "none";
 
       const radiusValueO3 = (d) => d.aqi.data.iaqi.o3;
       const o3circles = g
@@ -122,10 +138,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
 
       select("#o3-btn").on("click", function () {
         if (select(".o3-circle").classed("selected")) {
-          o3circles.style("display", "block");
+          o3circles.style("display", "none");
           select(".o3-circle").classed("selected", false);
         } else {
-          o3circles.style("display", "none");
+          o3circles.style("display", "block");
           select(".o3-circle").classed("selected", true);
         }
       });
@@ -159,10 +175,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
 
       select("#so2-btn").on("click", function () {
         if (select(".so2-circle").classed("selected")) {
-          so2circles.style("display", "block");
+          so2circles.style("display", "none");
           select(".so2-circle").classed("selected", false);
         } else {
-          so2circles.style("display", "none");
+          so2circles.style("display", "block");
           select(".so2-circle").classed("selected", true);
         }
       });
@@ -196,10 +212,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
 
       select("#no2-btn").on("click", function () {
         if (select(".no2-circle").classed("selected")) {
-          no2circles.style("display", "block");
+          no2circles.style("display", "none");
           select(".no2-circle").classed("selected", false);
         } else {
-          no2circles.style("display", "none");
+          no2circles.style("display", "block");
           select(".no2-circle").classed("selected", true);
         }
       });
@@ -235,10 +251,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
 
       select("#pm10-btn").on("click", function () {
         if (select(".pm10-circle").classed("selected")) {
-          pm10circles.style("display", "block");
+          pm10circles.style("display", "none");
           select(".pm10-circle").classed("selected", false);
         } else {
-          pm10circles.style("display", "none");
+          pm10circles.style("display", "block");
           select(".pm10-circle").classed("selected", true);
         }
       });
@@ -274,10 +290,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
 
       select("#pm25-btn").on("click", function () {
         if (select(".pm25-circle").classed("selected")) {
-          pm25circles.style("display", "block");
+          pm25circles.style("display", "none");
           select(".pm25-circle").classed("selected", false);
         } else {
-          pm25circles.style("display", "none");
+          pm25circles.style("display", "block");
           select(".pm25-circle").classed("selected", true);
         }
       });
@@ -343,10 +359,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
 
       select("#co-btn").on("click", function () {
         if (select(".co-circle").classed("selected")) {
-          coCircles.style("display", "block");
+          coCircles.style("display", "none");
           select(".co-circle").classed("selected", false);
         } else {
-          coCircles.style("display", "none");
+          coCircles.style("display", "block");
           select(".co-circle").classed("selected", true);
         }
       });
