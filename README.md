@@ -27,9 +27,9 @@ Users can hover over each city to display a tooltip giving the name, population,
 ![tooltip](https://github.com/danjamesyee/Air/blob/master/tooltip.gif?raw=true)
 
 
-##### Data Sources
+### Data Sources
 
-###### Thanks to these places for the data:
+##### Thanks to these places for the data:
   
   * [World Air Quality Index Project](https://waqi.info/)
   * [Simple Maps World Cities Database](https://simplemaps.com/data/world-cities)
