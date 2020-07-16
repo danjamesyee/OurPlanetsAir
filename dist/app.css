@@ -113,6 +113,13 @@ svg {
   display: none;
 }
 
+#pco {
+  width: 200px;
+  border-radius: 5px;
+  color: #78fdfa;
+  background: white;
+}
+
 #co-btn {
   background: #78fdfa;
   opacity: 0.5;
@@ -142,6 +149,15 @@ svg {
   animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
   display: none;
+}
+#ppm {
+  width: 290px;
+  border-radius: 5px;
+  color: grey;
+  background: white;
+}
+#ppm25 {
+  /* color: yellow; */
 }
 
 @keyframes colorpm25 {
@@ -222,6 +238,13 @@ svg {
   opacity: 0.5;
 }
 
+#po3 {
+  width: 97px;
+  border-radius: 5px;
+  color: #04f504;
+  background: white;
+}
+
 .so2-circle {
   fill: #ae03fe;
   fill-opacity: 0.5;
@@ -253,6 +276,13 @@ svg {
   opacity: 0.5;
 }
 
+#pso2 {
+  width: 180px;
+  border-radius: 5px;
+  color: #ae03fe;
+  background: white;
+}
+
 .no2-circle {
   fill: #1239ff;
   fill-opacity: 0.5;
@@ -264,6 +294,12 @@ svg {
   animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
   display: none;
+}
+#pno2 {
+  width: 210px;
+  border-radius: 5px;
+  color: #1239ff;
+  background: white;
 }
 
 @keyframes colorno2 {
@@ -362,7 +398,7 @@ h1 {
   margin: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: hidden; /* Enable scroll if needed */
+  overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
@@ -372,6 +408,14 @@ h1 {
   background-color: lightgrey;
   margin: 10% auto; /* 15% from the top and centered */
   padding: 20px;
+  border: 3px solid white;
+  width: 40%; /* Could be more or less, depending on screen size */
+  border-radius: 4px;
+}
+.modal-content2 {
+  background-color: lightgrey;
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 30px;
   border: 3px solid white;
   width: 40%; /* Could be more or less, depending on screen size */
   border-radius: 4px;
@@ -407,8 +451,9 @@ h1 {
   margin-left: 10px;
 }
 #about {
-  width: 200px;
+  width: 250px;
   opacity: 0.5;
+  margin-right: 16px;
 }
 p {
   text-align: center;
@@ -476,5 +521,20 @@ h2 {
 .ptitle {
   font-weight: bold;
   font-size: 18px;
-  padding: 7px;
+  padding: 5px;
+  margin-bottom: 8px;
+}
+
+#mc2 {
+  position: relative;
+  bottom: 150px;
+}
+
+.flexer {
+  display: flex;
+  justify-content: space-between;
+}
+
+#about:hover {
+  opacity: 1;
 }

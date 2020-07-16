@@ -47,17 +47,17 @@
         </div>
       </h3>
       <h3 id="myModal2" class="modal2">
-        <div class="modal-content">
+        <div class="modal-content2" id="mc2">
           <span class="close2">&times;</span>
           <h2>The pollutants in our air</h2>
           <h5>
-            <div class="ptitle">O3(Ozone)</div>
+            <div class="ptitle" id="po3">O3(Ozone)</div>
             - Ground-level ozone, is “bad” because it can trigger a variety of
             health problems, particularly for children, the elderly, and people
             of all ages who have lung diseases such as asthma.
           </h5>
           <h5>
-            <div class="ptitle">CO(Carbon Monoxide)</div>
+            <div class="ptitle" id="pco">CO(Carbon Monoxide)</div>
             - Breathing air with a high concentration of CO reduces the amount
             of oxygen that can be transported in the blood stream to critical
             organs like the heart and brain. At very high levels, which are
@@ -68,7 +68,7 @@
             some types of heart disease.
           </h5>
           <h5>
-            <div class="ptitle">SO2(Sulfur Dioxide)</div>
+            <div class="ptitle" id="pso2">SO2(Sulfur Dioxide)</div>
             - Short-term exposures to SO2 can harm the human respiratory system
             and make breathing difficult. People with asthma, particularly
             children, are sensitive to these effects of SO2. SO2 emissions that
@@ -78,7 +78,7 @@
             contribute to particulate matter (PM) pollution.
           </h5>
           <h5>
-            <div class="ptitle">NO2(Nitrogen Dioxide)</div>
+            <div class="ptitle" id="pno2">NO2(Nitrogen Dioxide)</div>
             - Breathing air with a high concentration of NO2 can irritate
             airways in the human respiratory system. Such exposures over short
             periods can aggravate respiratory diseases, particularly asthma,
@@ -87,7 +87,9 @@
             rooms.
           </h5>
           <h5>
-            <div class="ptitle">PM10/PM2.5(Particulate Matter)</div>
+            <div class="ptitle" id="ppm">
+              PM10/PM2.5(Particulate Matter)
+            </div>
             - Particulate matter contains microscopic solids or liquid droplets
             that are so small that they can be inhaled and cause serious health
             problems. Some particles less than 10 micrometers in diameter can
@@ -98,7 +100,7 @@
           </h5>
 
           <br />
-          <a href="https://www.epa.gov/criteria-air-pollutants" id="github"
+          <a href="https://www.epa.gov/criteria-air-pollutants" id="epa"
             >Information found on the EPA website</a
           >
         </div>
@@ -114,8 +116,10 @@
       <svg width="960" height="500"></svg>
 
       <br />
-      <button id="instructions">Information</button>
-      <button id="about">More about pollution</button>
+      <div class="flexer">
+        <button id="instructions">Information</button>
+        <button id="about">More about the pollutants</button>
+      </div>
       <!-- <div id="map"></div> -->
       <script src="main.js"></script>
     </div>
