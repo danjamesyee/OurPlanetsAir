@@ -35,14 +35,25 @@ const svg = select("svg");
 const instBtn = document.getElementById("instructions");
 const modal = document.getElementById("myModal");
 const span = document.getElementsByClassName("close")[0];
-const cont = document.getElementsByClassName;
+
+const instBtn2 = document.getElementById("about");
+const modal2 = document.getElementById("myModal2");
+const span2 = document.getElementsByClassName("close2")[0];
 
 instBtn.onclick = function () {
   modal.style.display = "block";
 };
 
+instBtn2.onclick = function () {
+  modal2.style.display = "block";
+};
+
 span.onclick = function () {
   modal.style.display = "none";
+};
+
+span2.onclick = function () {
+  modal2.style.display = "none";
 };
 
 modal.onclick = function (event) {
@@ -50,12 +61,19 @@ modal.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+modal2.onclick = function (event) {
+  if (event.target == modal2) {
+    modal2.style.display = "none";
+  }
+};
+
 let width = svg.style("width");
 width = +width.slice(0, width.length - 2) / 2;
-const g = svg.append("g");
-// console.log(width);
+const g = svg.append("g").attr("id", "gcont");
+console.log(width);
 let height = svg.style("height");
 height = +(height.slice(0, height.length - 2) / 2);
+// selectAll("g").attr("transform", `translate(${width / 2 - width / 5})`);
 
 const projection = geoNaturalEarth1();
 const pathGenerator = geoPath().projection(projection);
@@ -64,7 +82,6 @@ g.append("path")
   .attr("d", pathGenerator({ type: "Sphere" }));
 
 console.log(select("path"));
-selectAll("g").attr("transform", "scale(1.5)");
 // select("g").attr("transform", `translate(1, 100)`);
 
 svg.call(
@@ -103,7 +120,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
     const cities = Object.values(rowById);
     const capitals = [];
     for (let i = 0; i < cities.length; i++) {
-      if (cities[i].population > 10000000) {
+      if (cities[i].population > 5000000) {
         capitals.push(cities[i]);
       }
     }
@@ -124,7 +141,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       }
       // console.log(capitals);
       sizeScale.domain([0, max(capitals, radiusValue)]).range([0, 10]);
-      modal.style.display = "none";
+
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 10000);
 
       const radiusValueO3 = (d) => d.aqi.data.iaqi.o3;
       const o3circles = g
@@ -469,6 +489,8 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
             .style("left", event.pageX + 10 + "px")
             .style("top", event.pageY + 10 + "px");
         });
+
+      // selectAll("g").attr("transform", "scale(1.5)");
     });
   }
 );

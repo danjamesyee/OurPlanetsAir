@@ -326,6 +326,7 @@ svg {
 .buttons {
   display: flex;
   justify-content: space-around;
+  width: 990px;
 }
 
 h1 {
@@ -349,6 +350,22 @@ h1 {
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
+.modal2 {
+  display: none;
+  transition: opacity 0.25s ease-in-out;
+  -moz-transition: opacity 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
 /* Modal Content/Box */
 .modal-content {
@@ -356,7 +373,7 @@ h1 {
   margin: 10% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 3px solid white;
-  width: 60%; /* Could be more or less, depending on screen size */
+  width: 40%; /* Could be more or less, depending on screen size */
   border-radius: 4px;
 }
 
@@ -368,8 +385,17 @@ h1 {
   font-weight: bold;
 }
 
+.close2 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
 .close:hover,
-.close:focus {
+.close:focus,
+.close2:hover,
+.close2:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -380,7 +406,10 @@ h1 {
   opacity: 0.5;
   margin-left: 10px;
 }
-
+#about {
+  width: 200px;
+  opacity: 0.5;
+}
 p {
   text-align: center;
   font-family: "Montserrat", sans-serif;
@@ -430,3 +459,22 @@ h5 {
 /* g {
   z-index: 999999;
 } */
+
+/* #gcont {
+  width: 100vw;
+} */
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.ptitle {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 7px;
+}
