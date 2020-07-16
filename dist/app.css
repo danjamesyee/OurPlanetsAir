@@ -58,6 +58,7 @@ svg {
   animation-name: color;
   animation-duration: 4s;
   animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
 }
 
 @keyframes fadeIn {
@@ -78,7 +79,7 @@ svg {
     fill: #cc5803;
   }
   50% {
-    fill: #CA3C25;
+    fill: #ca3c25;
   }
   75% {
     fill: #702632;
@@ -98,27 +99,34 @@ svg {
 }
 
 .co-circle {
-  fill: #33658a;
+  fill: #78fdfa;
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
   animation: fadeIn 6s;
-  animation-name: color;
+  animation-name: colorco;
   animation-duration: 4s;
   animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+
   /* display: none; */
+}
+
+#co-btn {
+  background: #78fdfa;
+  opacity: 0.5;
 }
 
 @keyframes colorco {
   0% {
-    fill: #235789 ;
+    fill: #235789;
   }
   50% {
-    fill: #007CBE;
+    fill: #007cbe;
   }
-  
+
   100% {
-    fill: #7161EF;
+    fill: #78fdfa;
   }
 }
 
@@ -128,7 +136,29 @@ svg {
   stroke: black;
   stroke-width: 0.3;
   animation: fadeIn 6s;
+  animation-name: colorpm25;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
   /* display: none; */
+}
+
+@keyframes colorpm25 {
+  0% {
+    fill: grey;
+  }
+  50% {
+    fill: #edf2f4;
+  }
+
+  100% {
+    fill: #8d99ae;
+  }
+}
+
+#pm25-btn {
+  background: grey;
+  opacity: 0.5;
 }
 
 .pm10-circle {
@@ -137,21 +167,133 @@ svg {
   stroke: black;
   stroke-width: 0.3;
   animation: fadeIn 6s;
+  animation-name: colorpm10;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
   /* display: none; */
 }
+
+@keyframes colorpm10 {
+  0% {
+    fill: yellow;
+  }
+  50% {
+    fill: #f6ae2d;
+  }
+
+  100% {
+    fill: #ffba08;
+  }
+}
+
+#pm10-btn {
+  background: yellow;
+  opacity: 0.5;
+}
+
 .o3-circle {
-  fill: rgb(152, 226, 152);
+  fill: #04f504;
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
   animation: fadeIn 6s;
+  animation-name: coloro3;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  /* display: none; */
+}
+@keyframes coloro3 {
+  0% {
+    fill: #04f504;
+  }
+  50% {
+    fill: #81c14b;
+  }
+
+  100% {
+    fill: #2e933c;
+  }
+}
+#o3-btn {
+  background: #04f504;
+  opacity: 0.5;
+}
+
+.so2-circle {
+  fill: #ae03fe;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.3;
+  animation: fadeIn 6s;
+  animation-name: colorso2;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
   /* display: none; */
 }
 
+@keyframes colorso2 {
+  0% {
+    fill: #ae03fe;
+  }
+  50% {
+    fill: #977390;
+  }
+
+  100% {
+    fill: #7067cf;
+  }
+}
+
+#so2-btn {
+  background: #ae03fe;
+  opacity: 0.5;
+}
+
+.no2-circle {
+  fill: #1239ff;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.3;
+  animation: fadeIn 6s;
+  animation-name: colorno2;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  /* display: none; */
+}
+
+@keyframes colorno2 {
+  0% {
+    fill: #1239ff;
+  }
+  50% {
+    fill: #256EFF;
+  }
+
+  100% {
+    fill: #01295f;
+  }
+}
+
+#no2-btn {
+  background: #1239ff;
+  opacity: 0.5;
+}
 #tooltip {
   background: white;
   height: 130px;
   width: 120px;
   border-radius: 6px;
   padding: 10px;
+}
+
+.selected {
+  display: none;
+}
+
+button {
+  border-radius: 4px;
 }

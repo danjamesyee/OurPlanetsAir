@@ -1,0 +1,154 @@
+{
+  "status": "ok",
+  "data": [
+    {
+      "uid": 11312,
+      "aqi": "97",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-15 23:00:00",
+        "vtime": 1594834200
+      },
+      "station": {
+        "name": "bangalore; Bapuji Nagar, Bengaluru, India",
+        "geo": [12.951913, 77.539784],
+        "url": "india/bengaluru/bapuji-nagar",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 8190,
+      "aqi": "56",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-16 03:00:00",
+        "vtime": 1594848600
+      },
+      "station": {
+        "name": "BTM, Bangalore, India",
+        "geo": [12.91281111, 77.60921944],
+        "url": "india/bangalore/btm",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 3758,
+      "aqi": "52",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-16 03:00:00",
+        "vtime": 1594848600
+      },
+      "station": {
+        "name": "Peenya, Bangalore, India",
+        "geo": [13.0339, 77.51321111],
+        "url": "india/bangalore/peenya",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 11293,
+      "aqi": "50",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-16 03:00:00",
+        "vtime": 1594848600
+      },
+      "station": {
+        "name": "bangalore; Silk Board, Bengaluru, India",
+        "geo": [12.917348, 77.622813],
+        "url": "india/bengaluru/silk-board",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 11428,
+      "aqi": "49",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-16 01:00:00",
+        "vtime": 1594841400
+      },
+      "station": {
+        "name": "bangalore; Hebbal, Bengaluru, India",
+        "geo": [13.029152, 77.585901],
+        "url": "india/bengaluru/hebbal",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 11270,
+      "aqi": "46",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-16 03:00:00",
+        "vtime": 1594848600
+      },
+      "station": {
+        "name": "bangalore; Hombegowda Nagar, Bengaluru, India",
+        "geo": [12.938539, 77.5901],
+        "url": "india/bengaluru/hombegowda-nagar",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 8686,
+      "aqi": "37",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-13 07:00:00",
+        "vtime": 1594603800
+      },
+      "station": {
+        "name": "City Railway Station, Bangalore, India",
+        "geo": [12.9773472, 77.570697222222],
+        "url": "india/bangalore/city-railway-station",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 11276,
+      "aqi": "31",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-16 03:00:00",
+        "vtime": 1594848600
+      },
+      "station": {
+        "name": "bangalore; Jayanagar 5th Block, Bengaluru, India",
+        "geo": [12.920984, 77.584908],
+        "url": "india/bengaluru/jayanagar-5th-block",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 8687,
+      "aqi": "14",
+      "time": {
+        "tz": "+05:30",
+        "stime": "2020-07-16 03:00:00",
+        "vtime": 1594848600
+      },
+      "station": {
+        "name": "SaneguravaHalli, Bangalore, India",
+        "geo": [12.9916694, 77.545830555556],
+        "url": "india/bangalore/saneguravahalli",
+        "country": "IN"
+      }
+    },
+    {
+      "uid": 8191,
+      "aqi": "-",
+      "time": {
+        "tz": "+05:30",
+        "stime": "1970-01-01 00:00:00",
+        "vtime": 0
+      },
+      "station": {
+        "name": "BWSSB, Bangalore, India",
+        "geo": [12.93890556, 77.69727222],
+        "url": "india/bangalore/bwssb"
+      }
+    }
+  ]
+}
