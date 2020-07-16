@@ -4,23 +4,23 @@
 
 ![mainpage](https://github.com/danjamesyee/Air/blob/master/airgif.gif?raw=true)
 
-### About
+## About
 
 Our Planet's Air is an interactive map visualising the real-time different air pollutants in major cities.
 
-### Technologies
+## Technologies
 
 Javascript, D3.js, HTML, CSS
 
-### Features
+## Features
 
-##### Filtering display by pollutant
+### Filtering display by pollutant
 
 Users can click each button to display or hide the visualisation of that specific pollutant on the map. This pollution data is collected from the World Air Quality Index API upon page refresh. 
 
 ![filter](https://github.com/danjamesyee/Air/blob/master/filterbypoll.gif?raw=true)
 
-##### Hovering tooltip to display city data
+### Hovering tooltip to display city data
 
 Users can hover over each city to display a tooltip giving the name, population, and pollution numbers for each city. The AQI level and the levels of different pollutants such as NO2 and CO also display real-time data upon page refresh. 
 
