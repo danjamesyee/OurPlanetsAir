@@ -25,3 +25,12 @@ Users can click each button to display or hide the visualisation of that specifi
 Users can hover over each city to display a tooltip giving the name, population, and pollution numbers for each city. The AQI level and the levels of different pollutants such as NO2 and CO also display real-time data upon page refresh. 
 
 ![tooltip](https://github.com/danjamesyee/Air/blob/master/tooltip.gif?raw=true)
+
+
+### Data Sources
+
+##### Thanks to these places for their free data:
+  
+  * [World Air Quality Index Project](https://waqi.info/)
+  * [Simple Maps World Cities Database](https://simplemaps.com/data/world-cities)
+  * [World Atlas TopoJSON](https://www.npmjs.com/package/world-atlas)
