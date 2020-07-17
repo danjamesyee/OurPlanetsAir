@@ -6,29 +6,14 @@ import {
   csv,
   zoom,
   event,
-  geoMercator,
-  geoOrthographic,
-  geoStereographic,
   geoNaturalEarth1,
   scaleOrdinal,
   schemeCategory10,
-  schemeSpectral,
-  forceSimulation,
   scaleSqrt,
   max,
-  tip,
-  mouse,
-  forceX,
-  selectAll,
-  geoTransverseMercator,
-  geoConicConformal,
-  geoEqualEarth,
-  geoEquirectangular,
-  geoNaturalEarth1Raw,
 } from "d3";
-import { sizeLegend } from "./sizeLegend";
+
 import { feature } from "topojson";
-// console.log("Hello");
 const aqikey = "97fe6ae1fe494e3775484aaf4968b874996c5e37";
 const svg = select("svg");
 
@@ -67,35 +52,20 @@ modal2.onclick = function (event) {
   }
 };
 
-let width = svg.style("width");
-width = +width.slice(0, width.length - 2) / 2;
-const g = svg.append("g").attr("id", "gcont");
-console.log(width);
-let height = svg.style("height");
-height = +(height.slice(0, height.length - 2) / 2);
-// selectAll("g").attr("transform", `translate(${width / 2 - width / 5})`);
-
 const projection = geoNaturalEarth1();
 const pathGenerator = geoPath().projection(projection);
 g.append("path")
   .attr("class", "sphere")
   .attr("d", pathGenerator({ type: "Sphere" }));
 
-console.log(select("path"));
-// select("g").attr("transform", `translate(1, 100)`);
-
 svg.call(
   zoom().on("zoom", () => {
     g.attr("transform", event.transform);
   })
 );
-// g.attr("width", 100);
-// console.log(g.attr("width"));
 
 Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
   ([csvData, topoJSONData, aqidata]) => {
-    // console.log(csvData);
-    // console.log(topoJSONData);
     const rowById = csvData.reduce((accumulator, d) => {
       accumulator[d.city] = d;
       return accumulator;
@@ -104,18 +74,14 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
     const radiusValue = (d) => d.aqi.data.aqi;
 
     const countries = feature(topoJSONData, topoJSONData.objects.countries);
-    // console.log(aqidata);
     const paths = g.selectAll("path").data(countries.features);
-    const colorScale = scaleOrdinal(schemeCategory10);
     paths
       .enter()
       .append("path")
       .attr("class", "country")
       .attr("d", pathGenerator)
-      // .attr("fill", (d) => colorScale(d.properties.name))
       .append("title")
       .text((d) => d.properties.name);
-    // debugger;
 
     const cities = Object.values(rowById);
     const capitals = [];
@@ -124,9 +90,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         capitals.push(cities[i]);
       }
     }
-
-    // console.log(Object.values(rowById));
-    // Object.values(rowById).forEach((item) => console.log(item));
 
     const promises = [];
     for (let j = 0; j < capitals.length; j++) {
@@ -139,12 +102,11 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       for (let j = 0; j < capitals.length; j++) {
         capitals[j]["aqi"] = array[j];
       }
-      // console.log(capitals);
       sizeScale.domain([0, max(capitals, radiusValue)]).range([0, 10]);
 
       setTimeout(function () {
         modal.style.display = "none";
-      }, 10000);
+      }, 15000);
 
       const radiusValueO3 = (d) => d.aqi.data.iaqi.o3;
       const o3circles = g
@@ -161,16 +123,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         })
         .attr("cy", function (d) {
           const coords = projection([d.lng, d.lat]);
-          // console.log(radiusValueO3(d));
           return coords[1];
         })
         .attr("dx", 1)
         .attr("dy", 0.5);
-      // .append("title")
-      // .text(
-      //   (d) =>
-      //     d.city + ": " + "o3: " + (radiusValueO3(d) ? radiusValueO3(d).v : 0)
-      // );
 
       select("#o3-btn").on("click", function () {
         if (select(".o3-circle").classed("selected")) {
@@ -198,20 +154,13 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         .attr("cx", function (d) {
           const coords = projection([d.lng, d.lat]);
           return coords[0];
-          console.log(d);
         })
         .attr("cy", function (d) {
           const coords = projection([d.lng, d.lat]);
-          // console.log(radiusValueO3(d));
           return coords[1];
         })
         .attr("dx", 1)
         .attr("dy", 0.5);
-      // .append("title")
-      // .text(
-      //   (d) =>
-      //     d.city + ": " + "o3: " + (radiusValueO3(d) ? radiusValueO3(d).v : 0)
-      // );
 
       select("#so2-btn").on("click", function () {
         if (select(".so2-circle").classed("selected")) {
@@ -239,20 +188,13 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         .attr("cx", function (d) {
           const coords = projection([d.lng, d.lat]);
           return coords[0];
-          console.log(d);
         })
         .attr("cy", function (d) {
           const coords = projection([d.lng, d.lat]);
-          // console.log(radiusValueO3(d));
           return coords[1];
         })
         .attr("dx", 1)
         .attr("dy", 0.5);
-      // .append("title")
-      // .text(
-      //   (d) =>
-      //     d.city + ": " + "o3: " + (radiusValueO3(d) ? radiusValueO3(d).v : 0)
-      // );
 
       select("#no2-btn").on("click", function () {
         if (select(".no2-circle").classed("selected")) {
@@ -283,19 +225,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         })
         .attr("cy", function (d) {
           const coords = projection([d.lng, d.lat]);
-          // console.log(d);
           return coords[1];
         })
         .attr("dx", 1)
         .attr("dy", 0.5);
-      // .append("title")
-      // .text(
-      //   (d) =>
-      //     d.city +
-      //     ": " +
-      //     "pm 10: " +
-      //     (radiusValuePM10(d) ? radiusValuePM10(d).v : 0)
-      // );
 
       select("#pm10-btn").on("click", function () {
         if (select(".pm10-circle").classed("selected")) {
@@ -325,19 +258,10 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         })
         .attr("cy", function (d) {
           const coords = projection([d.lng, d.lat]);
-          // console.log(d);
           return coords[1];
         })
         .attr("dx", 1)
         .attr("dy", 0.5);
-      // .append("title")
-      // .text(
-      //   (d) =>
-      //     d.city +
-      //     ": " +
-      //     "pm 2.5: " +
-      //     (radiusValuePM25(d) ? radiusValuePM25(d).v / 2 : 0)
-      // );
 
       select("#pm25-btn").on("click", function () {
         if (select(".pm25-circle").classed("selected")) {
@@ -352,16 +276,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           select(".pm25-circle").classed("selected", true);
         }
       });
-
-      // g.append("g").attr("transform", `translate(90,200)`).call(sizeLegend, {
-      //   sizeScale,
-      //   spacing: 40,
-      //   textOffset: 10,
-      //   numTicks: 5,
-      //   circleFill: "rgba(0, 0, 0, 0.5)",
-      // });
-
-      // (select(".tick"));
 
       select("body")
         .append("pre")
@@ -409,10 +323,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         })
         .attr("dx", 1)
         .attr("dy", 0.5);
-      // .append("title")
-      // .text(
-      //   (d) => d.city + " CO: " + (radiusValueCO(d) ? radiusValueCO(d).v : 0)
-      // );
 
       select("#co-btn").on("click", function () {
         if (select(".co-circle").classed("selected")) {
@@ -478,8 +388,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
                   d.aqi.data.iaqi.no2 ? d.aqi.data.iaqi.no2.v : "no data"
                 }`
             );
-
-          // console.log(d);
         })
         .on("mouseout", function (d) {
           select("#tooltip").style("opacity", 0);
@@ -489,8 +397,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
             .style("left", event.pageX + 10 + "px")
             .style("top", event.pageY + 10 + "px");
         });
-
-      // selectAll("g").attr("transform", "scale(1.5)");
     });
   }
 );
