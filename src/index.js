@@ -147,8 +147,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           select(".o3-circle").classed("selected", true);
         }
       });
-      // const zom = d3.zoom();
-      console.log(zom);
+
       select("#zoom-in").on("click", function () {
         zom.scaleBy(svg, 1.5);
       });
