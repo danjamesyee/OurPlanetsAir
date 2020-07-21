@@ -353,7 +353,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
 
-      g.append("g").attr("transform", `translate(90, 170)`).call(sizeLegend, {
+      g.append("g").attr("transform", `translate(75, 170)`).call(sizeLegend, {
         sizeScale,
         spacing: 40,
         textOffset: 10,
@@ -362,7 +362,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       });
 
       g.append("text")
-        .attr("x", 116)
+        .attr("x", 100)
         .attr("y", 145)
         .attr("text-anchor", "middle")
         .style("font-size", "23px")
