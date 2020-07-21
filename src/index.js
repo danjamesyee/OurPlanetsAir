@@ -11,7 +11,7 @@ import {
   scaleSqrt,
   max,
 } from "d3";
-import { sizeLegend } from "./sizeLegend";
+
 import { feature } from "topojson";
 const aqikey = "97fe6ae1fe494e3775484aaf4968b874996c5e37";
 const svg = select("svg");
@@ -50,6 +50,7 @@ modal2.onclick = function (event) {
     modal2.style.display = "none";
   }
 };
+
 const g = svg.append("g");
 
 const projection = geoNaturalEarth1();
@@ -75,7 +76,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
 
     const countries = feature(topoJSONData, topoJSONData.objects.countries);
     const paths = g.selectAll("path").data(countries.features);
-    const colorScale = scaleOrdinal(schemeCategory10);
     paths
       .enter()
       .append("path")
