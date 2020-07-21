@@ -3,7 +3,6 @@ import {
   json,
   geoPath,
   csv,
-  zoom,
   event,
   geoNaturalEarth1,
   scaleOrdinal,
@@ -11,6 +10,7 @@ import {
   scaleSqrt,
   max,
 } from "d3";
+import * as d3 from "d3";
 import { sizeLegend } from "./sizeLegend";
 import { feature } from "topojson";
 const aqikey = "97fe6ae1fe494e3775484aaf4968b874996c5e37";
@@ -58,12 +58,17 @@ const pathGenerator = geoPath().projection(projection);
 g.append("path")
   .attr("class", "sphere")
   .attr("d", pathGenerator({ type: "Sphere" }));
+const zom = d3.zoom();
 
 svg.call(
-  zoom().on("zoom", () => {
+  zom.on("zoom", () => {
     g.attr("transform", event.transform);
   })
 );
+
+// const zoom = d3.zoom().on("zoom", function () {
+//   g.attr("transform", event.transform);
+// });
 
 Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
   ([csvData, topoJSONData, aqidata]) => {
@@ -141,6 +146,14 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
 
           select(".o3-circle").classed("selected", true);
         }
+      });
+      // const zom = d3.zoom();
+      console.log(zom);
+      select("#zoom-in").on("click", function () {
+        zom.scaleBy(svg, 1.5);
+      });
+      select("#zoom-out").on("click", function () {
+        zom.scaleBy(svg, 1 / 1.5);
       });
 
       const radiusValueSO2 = (d) => d.aqi.data.iaqi.so2;

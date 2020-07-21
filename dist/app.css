@@ -550,3 +550,26 @@ a {
   padding: 0;
   text-decoration: none;
 }
+
+#zoom-in,
+#zoom-out {
+  position: relative;
+  bottom: 52px;
+  width: 50px;
+  height: 24px;
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid black;
+  margin: 5px;
+  text-align: center;
+  line-height: 0.8;
+  border-radius: 4px;
+  font-weight: 900;
+  font-size: 30px;
+}
+#zoom-out {
+  left: 550px;
+}
+#zoom-in {
+  left: 400px;
+}
