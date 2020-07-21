@@ -1,4 +1,3 @@
-// // import "../dist/app.css";
 import {
   select,
   json,
@@ -12,7 +11,7 @@ import {
   scaleSqrt,
   max,
 } from "d3";
-
+import { sizeLegend } from "./sizeLegend";
 import { feature } from "topojson";
 const aqikey = "97fe6ae1fe494e3775484aaf4968b874996c5e37";
 const svg = select("svg");
@@ -51,6 +50,8 @@ modal2.onclick = function (event) {
     modal2.style.display = "none";
   }
 };
+
+const g = svg.append("g");
 
 const projection = geoNaturalEarth1();
 const pathGenerator = geoPath().projection(projection);
@@ -94,7 +95,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
     const promises = [];
     for (let j = 0; j < capitals.length; j++) {
       const promise = json(
-        `http://api.waqi.info/feed/geo:${capitals[j].lat};${capitals[j].lng}/?token=${aqikey}`
+        `https://api.waqi.info/feed/geo:${capitals[j].lat};${capitals[j].lng}/?token=${aqikey}`
       );
       promises.push(promise);
     }
@@ -281,7 +282,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         .append("pre")
         .attr("id", "tooltip")
         .attr("style", "position: absolute; opacity: 0;");
-      // .text((d) => d.city + " aqi: " + d.aqi.data.aqi);
 
       g.selectAll(".city-label")
         .data(capitals)
@@ -318,7 +318,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         })
         .attr("cy", function (d) {
           const coords = projection([d.lng, d.lat]);
-          // console.log(d);
           return coords[1];
         })
         .attr("dx", 1)
@@ -342,6 +341,22 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
 
+      g.append("g").attr("transform", `translate(90, 170)`).call(sizeLegend, {
+        sizeScale,
+        spacing: 40,
+        textOffset: 10,
+        numTicks: 5,
+        circleFill: "rgba(0, 0, 0, 0.5)",
+      });
+
+      g.append("text")
+        .attr("x", 116)
+        .attr("y", 145)
+        .attr("text-anchor", "middle")
+        .style("font-size", "23px")
+        .style("text-decoration", "underline")
+        .text("AQI");
+
       const circles = g
         .selectAll(".city-circle")
         .data(capitals)
@@ -357,7 +372,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
         })
         .attr("cy", function (d) {
           const coords = projection([d.lng, d.lat]);
-          // console.log(d);
           return coords[1];
         })
         .on("mouseover", function (d) {

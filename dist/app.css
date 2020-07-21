@@ -481,12 +481,6 @@ a {
 }
 
 #github {
-  font-size: 13px;
-  background: white;
-  text-decoration: none;
-  padding: 3px;
-  border-radius: 3px;
-  margin-left: 80%;
 }
 
 #instructions:hover {
@@ -537,4 +531,22 @@ h2 {
 
 #about:hover {
   opacity: 1;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.links > a {
+  background: white;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }

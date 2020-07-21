@@ -1,12 +1,12 @@
 # Our Planet's Air
 
-[Live Site](https://danjamesyee.github.io/Air/dist/index.html)
+[Live Site](https://danjamesyee.github.io/OurPlanetsAir/dist/index.html)
 
 ![mainpage](https://github.com/danjamesyee/Air/blob/master/airgif.gif?raw=true)
 
 ## About
 
-Our Planet's Air is an interactive map visualising the real-time different air pollutants in major cities.
+Our Planet's Air is an interactive map visualising the real-time different air pollutants in major cities. This idea arose from the need for people to have a visual representation of a problem to be moved to address it more urgently.
 
 ## Technologies
 
