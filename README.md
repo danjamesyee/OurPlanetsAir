@@ -1,6 +1,6 @@
 # Our Planet's Air
 
-[Live Site](https://danjamesyee.github.io/OurPlanetsAir/dist/index.html)
+[Live Site](https://www.danielyee.dev/OurPlanetsAir/dist/index.html)
 
 ![mainpage](https://github.com/danjamesyee/Air/blob/master/airgif.gif?raw=true)
 
