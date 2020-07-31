@@ -26,7 +26,21 @@ Users can hover over each city to display a tooltip giving the name, population,
 
 ![tooltip](https://github.com/danjamesyee/Air/blob/master/tooltip.gif?raw=true)
 
+### Promise aggregation to obtain data from API
 
+```Javascript
+const promises = [];
+    for (let j = 0; j < capitals.length; j++) {
+      const promise = json(
+        `https://api.waqi.info/feed/geo:${capitals[j].lat};${capitals[j].lng}/?token=${aqikey}`
+      );
+      promises.push(promise);
+    }
+    const array = Promise.all(promises).then((array) => {
+      for (let j = 0; j < capitals.length; j++) {
+        capitals[j]["aqi"] = array[j];
+      }
+```
 ### Data Sources
 
 ##### Thanks to these places for their free data:
