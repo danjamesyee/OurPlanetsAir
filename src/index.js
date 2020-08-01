@@ -110,10 +110,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       }
       sizeScale.domain([0, max(capitals, radiusValue)]).range([0, 10]);
 
-      setTimeout(function () {
-        modal.style.display = "none";
-      }, 15000);
-
       const radiusValueO3 = (d) => d.aqi.data.iaqi.o3;
       const o3circles = g
         .selectAll(".o3-circle")

@@ -24,6 +24,10 @@
     "d3-zoom": "^1.8.3",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
-    "topojson": "^3.0.2"
+    "topojson": "^3.0.2",
+    "webpack": "^4.44.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.12"
   }
 }
