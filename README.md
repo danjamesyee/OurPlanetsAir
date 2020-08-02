@@ -6,7 +6,7 @@
 
 ## About
 
-Our Planet's Air is an interactive map visualising the real-time different air pollutants in major cities. This idea arose from the need for people to have a visual representation of a problem to be moved to address it more urgently.
+Our Planet's Air is an interactive map visualising the real-time different air pollutants in major cities. This idea arose from the need for people to have a visual representation of a problem to be moved to address it more urgently. My hope is that people will see this as a global issue and work together to create solutions.
 
 ## Technologies
 
