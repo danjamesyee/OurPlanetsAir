@@ -331,6 +331,31 @@ svg {
   color: white;
   border: 1px solid white;
 }
+#tooltip2 {
+  background-color: rgba(36, 49, 25, 0.5);
+  height: 25px;
+  width: 80px;
+  border-radius: 6px;
+  padding: 10px;
+  padding-bottom: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  color: white;
+  border: 1px solid white;
+}
+#tooltip3 {
+  background-color: rgba(36, 49, 25, 0.5);
+  display: inline-block;
+  /* height: 25px; */
+  /* width: 10%; */
+  border-radius: 6px;
+  padding: 10px;
+  padding-bottom: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: white;
+  border: 1px solid white;
+}
 
 .selected {
   display: none;
