@@ -79,6 +79,11 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
     const sizeScale = scaleSqrt();
     const radiusValue = (d) => d.aqi.data.aqi;
 
+    select("body")
+      .append("pre")
+      .attr("id", "tooltip3")
+      .attr("style", "position: absolute; opacity: 0;");
+
     const countries = feature(topoJSONData, topoJSONData.objects.countries);
     const paths = g.selectAll("path").data(countries.features);
     paths
@@ -86,13 +91,27 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       .append("path")
       .attr("class", "country")
       .attr("d", pathGenerator)
-      .append("title")
-      .text((d) => d.properties.name);
+      .on("click", function (d) {
+        console.log(d);
+        select("#tooltip3")
+          .transition()
+          .duration(200)
+          .style("opacity", 1)
+          .text(d.properties.name);
+      })
+      .on("mouseout", function (d) {
+        select("#tooltip3").style("opacity", 0);
+      })
+      .on("mousemove", function (d) {
+        select("#tooltip3")
+          .style("left", event.pageX + 10 + "px")
+          .style("top", event.pageY + 10 + "px");
+      });
 
     const cities = Object.values(rowById);
     const capitals = [];
     for (let i = 0; i < cities.length; i++) {
-      if (cities[i].population > 5000000) {
+      if (cities[i].population > 3000000) {
         capitals.push(cities[i]);
       }
     }
@@ -113,6 +132,15 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       // setTimeout(function () {
       //   modal.style.display = "none";
       // }, 15000);
+      select("body")
+        .append("pre")
+        .attr("id", "tooltip")
+        .attr("style", "position: absolute; display: none;");
+
+      select("body")
+        .append("pre")
+        .attr("id", "tooltip2")
+        .attr("style", "position: absolute; opacity: 0;");
 
       const radiusValueO3 = (d) => d.aqi.data.iaqi.o3;
       const o3circles = g
@@ -132,7 +160,27 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           return coords[1];
         })
         .attr("dx", 1)
-        .attr("dy", 0.5);
+        .attr("dy", 0.5)
+        .on("click", function (d) {
+          select("#tooltip2")
+            .transition()
+            .duration(200)
+            .style("opacity", 1)
+            .text(
+              d.city +
+                `\n O3:       ${
+                  d.aqi.data.iaqi.o3 ? d.aqi.data.iaqi.o3.v : "no data"
+                }`
+            );
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip2").style("opacity", 0);
+        })
+        .on("mousemove", function (d) {
+          select("#tooltip2")
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY + 10 + "px");
+        });
 
       select("#o3-btn").on("click", function () {
         if (select(".o3-circle").classed("selected")) {
@@ -173,7 +221,27 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           return coords[1];
         })
         .attr("dx", 1)
-        .attr("dy", 0.5);
+        .attr("dy", 0.5)
+        .on("click", function (d) {
+          select("#tooltip2")
+            .transition()
+            .duration(200)
+            .style("opacity", 1)
+            .text(
+              d.city +
+                `\n SO2:       ${
+                  d.aqi.data.iaqi.so2 ? d.aqi.data.iaqi.so2.v : "no data"
+                }`
+            );
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip2").style("opacity", 0);
+        })
+        .on("mousemove", function (d) {
+          select("#tooltip2")
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY + 10 + "px");
+        });
 
       select("#so2-btn").on("click", function () {
         if (select(".so2-circle").classed("selected")) {
@@ -207,7 +275,27 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           return coords[1];
         })
         .attr("dx", 1)
-        .attr("dy", 0.5);
+        .attr("dy", 0.5)
+        .on("click", function (d) {
+          select("#tooltip2")
+            .transition()
+            .duration(200)
+            .style("opacity", 1)
+            .text(
+              d.city +
+                `\n NO2:       ${
+                  d.aqi.data.iaqi.no2 ? d.aqi.data.iaqi.no2.v : "no data"
+                }`
+            );
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip2").style("opacity", 0);
+        })
+        .on("mousemove", function (d) {
+          select("#tooltip2")
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY + 10 + "px");
+        });
 
       select("#no2-btn").on("click", function () {
         if (select(".no2-circle").classed("selected")) {
@@ -241,7 +329,27 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           return coords[1];
         })
         .attr("dx", 1)
-        .attr("dy", 0.5);
+        .attr("dy", 0.5)
+        .on("click", function (d) {
+          select("#tooltip2")
+            .transition()
+            .duration(200)
+            .style("opacity", 1)
+            .text(
+              d.city +
+                `\n PM10:       ${
+                  d.aqi.data.iaqi.pm10 ? d.aqi.data.iaqi.pm10.v : "no data"
+                }`
+            );
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip2").style("opacity", 0);
+        })
+        .on("mousemove", function (d) {
+          select("#tooltip2")
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY + 10 + "px");
+        });
 
       select("#pm10-btn").on("click", function () {
         if (select(".pm10-circle").classed("selected")) {
@@ -274,7 +382,27 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           return coords[1];
         })
         .attr("dx", 1)
-        .attr("dy", 0.5);
+        .attr("dy", 0.5)
+        .on("click", function (d) {
+          select("#tooltip2")
+            .transition()
+            .duration(200)
+            .style("opacity", 1)
+            .text(
+              d.city +
+                `\n PM2.5:       ${
+                  d.aqi.data.iaqi.pm25 ? d.aqi.data.iaqi.pm25.v : "no data"
+                }`
+            );
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip2").style("opacity", 0);
+        })
+        .on("mousemove", function (d) {
+          select("#tooltip2")
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY + 10 + "px");
+        });
 
       select("#pm25-btn").on("click", function () {
         if (select(".pm25-circle").classed("selected")) {
@@ -289,11 +417,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           select(".pm25-circle").classed("selected", true);
         }
       });
-
-      select("body")
-        .append("pre")
-        .attr("id", "tooltip")
-        .attr("style", "position: absolute; opacity: 0;");
 
       g.selectAll(".city-label")
         .data(capitals)
@@ -333,7 +456,27 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           return coords[1];
         })
         .attr("dx", 1)
-        .attr("dy", 0.5);
+        .attr("dy", 0.5)
+        .on("click", function (d) {
+          select("#tooltip2")
+            .transition()
+            .duration(200)
+            .style("opacity", 1)
+            .text(
+              d.city +
+                `\n CO:       ${
+                  d.aqi.data.iaqi.co ? d.aqi.data.iaqi.co.v : "no data"
+                }`
+            );
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip2").style("opacity", 0);
+        })
+        .on("mousemove", function (d) {
+          select("#tooltip2")
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY + 10 + "px");
+        });
 
       select("#co-btn").on("click", function () {
         if (select(".co-circle").classed("selected")) {
@@ -390,7 +533,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           select("#tooltip")
             .transition()
             .duration(200)
-            .style("opacity", 1)
+            .style("display", "block")
             .text(
               d.city +
                 `\n Pop:     ${numberWithCommas(d.population)}` +
@@ -415,13 +558,13 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
                 }`
             );
         })
-        .on("mouseout", function (d) {
-          select("#tooltip").style("opacity", 0);
-        })
         .on("mousemove", function (d) {
           select("#tooltip")
             .style("left", event.pageX + 10 + "px")
             .style("top", event.pageY + 10 + "px");
+        })
+        .on("mouseout", function (d) {
+          select("#tooltip").style("display", "none");
         });
     });
   }
