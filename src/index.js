@@ -92,7 +92,6 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       .attr("class", "country")
       .attr("d", pathGenerator)
       .on("click", function (d) {
-        console.log(d);
         select("#tooltip3")
           .transition()
           .duration(200)
