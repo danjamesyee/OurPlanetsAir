@@ -528,7 +528,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
           const coords = projection([d.lng, d.lat]);
           return coords[1];
         })
-        .on("mouseover", function (d) {
+        .on("click", function (d) {
           select("#tooltip")
             .transition()
             .duration(200)
