@@ -5,6 +5,9 @@ svg {
   stroke-width: 0.05;
 }
 
+button {
+  cursor: pointer;
+}
 .sphere {
   fill: cornflowerblue;
   /* height: 100vh; */
@@ -52,6 +55,7 @@ svg {
 }
 .aqi-circle {
   /* fill: red; */
+  cursor: pointer;
   fill-opacity: 0.5;
   stroke: black;
   stroke-width: 0.3;
