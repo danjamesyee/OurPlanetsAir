@@ -122,7 +122,7 @@ Promise.all([csv("./worldcities.csv"), json("./world.topojson")]).then(
       );
       promises.push(promise);
     }
-    const array = Promise.all(promises).then((array) => {
+    Promise.all(promises).then((array) => {
       for (let j = 0; j < capitals.length; j++) {
         capitals[j]["aqi"] = array[j];
       }
